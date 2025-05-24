@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sibahle Sithole - Data Scientist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            animation: slideIn 1s ease-out;
+            border: 1px solid rgba(229, 231, 235, 0.5);
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.05) 10px,
+                rgba(255, 255, 255, 0.05) 20px
+            );
+            animation: drift 20s linear infinite;
+        }
+
+        @keyframes drift {
+            0% { transform: translateX(-50px) translateY(-50px); }
+            100% { transform: translateX(50px) translateY(50px); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .name {
+            font-size: 3.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 2px;
+        }
+
+        .title {
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            color: #10b981;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .goat-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #10b981, #059669);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin: 10px 0;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .contact {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9em;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-2px);
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            color: #1f2937;
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 5px;
+            height: 30px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 3px;
+        }
+
+        .summary {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #374151;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(5, 150, 105, 0.08));
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #10b981;
+        }
+
+        .project {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+            border-left: 5px solid #3b82f6;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(229, 231, 235, 0.3);
+        }
+
+        .project:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-title {
+            font-size: 1.4em;
+            color: #1f2937;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .project-subtitle {
+            color: #6b7280;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .project-description {
+            line-height: 1.6;
+            color: #4b5563;
+        }
+
+        .tech-stack {
+            margin-top: 15px;
+        }
+
+        .tech-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #6b7280, #4b5563);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin: 3px;
+            font-weight: 500;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(229, 231, 235, 0.3);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-3px);
+        }
+
+        .skill-category h4 {
+            color: #1f2937;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 8px;
+        }
+
+        .skill-item {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(5, 150, 105, 0.08));
+            padding: 8px 15px;
+            margin: 5px 0;
+            border-radius: 25px;
+            font-size: 0.9em;
+            color: #374151;
+            border-left: 3px solid #10b981;
+        }
+
+        .link {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .link:hover {
+            color: #1d4ed8;
+            text-decoration: underline;
+        }
+
+        .certification {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(29, 78, 216, 0.08));
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin: 10px 0;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .print-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #1f2937, #374151);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(31, 41, 55, 0.3);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .print-btn:hover {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, #374151, #4b5563);
+        }
+
+        @media print {
+            .print-btn { display: none; }
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; border: none; }
+            .header { background: #1f2937 !important; }
+        }
+
+        @media (max-width: 768px) {
+            .name { font-size: 2.5em; }
+            .contact { flex-direction: column; gap: 15px; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .content { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1 class="name">SIBAHLE SITHOLE</h1>
+                <div class="goat-badge">🚀 RISING DATA SCIENTIST 🚀</div>
+                <p class="title">Tech Educator & Machine Learning Specialist</p>
+                <div class="contact">
+                    <div class="contact-item">📧 sbahlesithole707@gmail.com</div>
+                    <div class="contact-item">📱 +27 60 243 9425</div>
+                    <div class="contact-item">🌐 <a href="https://youtube.com/@JourneytoData-h7u" class="link" style="color: #10b981;">YouTube</a></div>
+                    <div class="contact-item">💻 <a href="https://github.com/Sibahle01" class="link" style="color: #10b981;">GitHub</a></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h2 class="section-title">🚀 PROFESSIONAL SUMMARY</h2>
+                <div class="summary">
+                    Final-year ICT student and data science practitioner with proven ability to translate complex technical concepts into actionable insights. Creator of "Journey to Data" educational platform reaching diverse audiences across YouTube and TikTok. Demonstrated expertise in end-to-end data pipeline development, machine learning implementation, and interactive dashboard creation. Seeking to leverage analytical skills, technical proficiency, and communication expertise to drive data-driven decision making in a dynamic tech environment.
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">🏆 FLAGSHIP PROJECTS</h2>
+                
+                <div class="project">
+                    <h3 class="project-title">🎬 MOVIE RECOMMENDATION SYSTEM</h3>
+                    <p class="project-subtitle">Machine Learning & Data Science Implementation | 2024</p>
+                    <div class="project-description">
+                        <ul style="margin-left: 20px; line-height: 1.8;">
+                            <li>Developed intelligent recommendation engine using collaborative filtering and content-based algorithms</li>
+                            <li>Implemented data preprocessing pipeline for movie ratings and metadata analysis</li>
+                            <li>Applied decision tree algorithms for feature selection and recommendation accuracy optimization</li>
+                            <li>Created comprehensive educational content explaining decision tree methodology in two-part video series</li>
+                        </ul>
+                        <p style="margin-top: 15px;">
+                            <strong>🔗 Links:</strong> 
+                            <a href="https://lnkd.in/dJ2t5dvt" class="link">Repository</a> | 
+                            <a href="https://lnkd.in/dw32PbAT" class="link">Tutorial Part 1</a> | 
+                            <a href="https://lnkd.in/dDM8Dkne" class="link">Tutorial Part 2</a>
+                        </p>
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">Scikit-learn</span>
+                        <span class="tech-tag">NumPy</span>
+                        <span class="tech-tag">Matplotlib</span>
+                        <span class="tech-tag">Decision Trees</span>
+                    </div>
+                </div>
+
+                <div class="project">
+                    <h3 class="project-title">📊 ADVANCED DATA SCIENCE PORTFOLIO</h3>
+                    <p class="project-subtitle">End-to-End Data Pipeline & Analytics | 2023-2024</p>
+                    <div class="project-description">
+                        <ul style="margin-left: 20px; line-height: 1.8;">
+                            <li>Architected complete data workflow from acquisition through visualization</li>
+                            <li>Implemented statistical analysis techniques solving real-world business scenarios</li>
+                            <li>Designed interactive dashboards revealing complex data relationships</li>
+                            <li>Optimized database queries for improved performance and scalability</li>
+                        </ul>
+                        <p style="margin-top: 15px;">
+                            <strong>🔗 Project:</strong> <a href="https://lnkd.in/dBhTgKas" class="link">View Repository</a>
+                        </p>
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">SQL</span>
+                        <span class="tech-tag">PowerBI</span>
+                        <span class="tech-tag">Statistical Analysis</span>
+                    </div>
+                </div>
+
+                <div class="project">
+                    <h3 class="project-title">🎓 JOURNEY TO DATA PLATFORM</h3>
+                    <p class="project-subtitle">Educational Content Creation | 2023 - Present</p>
+                    <div class="project-description">
+                        <ul style="margin-left: 20px; line-height: 1.8;">
+                            <li>Built comprehensive educational ecosystem democratizing data science knowledge</li>
+                            <li>Developed structured curriculum covering Python, SQL, PowerBI, and Excel</li>
+                            <li>Conducted industry professional interviews, building valuable network</li>
+                            <li>Achieved measurable audience growth through high-quality technical content</li>
+                        </ul>
+                        <p style="margin-top: 15px;">
+                            <strong>🔗 Platform:</strong> <a href="https://www.youtube.com/@JourneytoData-h7u" class="link">YouTube Channel</a>
+                        </p>
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Content Creation</span>
+                        <span class="tech-tag">Video Production</span>
+                        <span class="tech-tag">Technical Communication</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">💻 SKILLS</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4>🐍 Programming Languages</h4>
+                        <div class="skill-item">Python (Advanced)</div>
+                        <div class="skill-item">SQL (Advanced)</div>
+                        <div class="skill-item">Java</div>
+                        <div class="skill-item">C#</div>
+                        <div class="skill-item">JavaScript</div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h4>🤖 Data Science Stack</h4>
+                        <div class="skill-item">Pandas & NumPy</div>
+                        <div class="skill-item">Scikit-learn</div>
+                        <div class="skill-item">Matplotlib & Seaborn</div>
+                        <div class="skill-item">Machine Learning</div>
+                        <div class="skill-item">Statistical Analysis</div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h4>📈 Analytics & Visualization</h4>
+                        <div class="skill-item">Microsoft Power BI</div>
+                        <div class="skill-item">Excel (Advanced)</div>
+                        <div class="skill-item">Tableau</div>
+                        <div class="skill-item">Dashboard Design</div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h4>🗄️ Database Technologies</h4>
+                        <div class="skill-item">MySQL</div>
+                        <div class="skill-item">PostgreSQL</div>
+                        <div class="skill-item">Database Design</div>
+                        <div class="skill-item">Query Optimization</div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h4>🌐 Web Technologies</h4>
+                        <div class="skill-item">HTML & CSS</div>
+                        <div class="skill-item">JavaScript</div>
+                        <div class="skill-item">Web Scraping</div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h4>🛠️ Development Tools</h4>
+                        <div class="skill-item">Git & GitHub</div>
+                        <div class="skill-item">Jupyter Notebooks</div>
+                        <div class="skill-item">VS Code</div>
+                        <div class="skill-item">Technical Writing</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">🎓 EDUCATION & CERTIFICATIONS</h2>
+                
+                <div class="project">
+                    <h3 class="project-title">Bachelor of Information and Communications Technology</h3>
+                    <p class="project-subtitle">Durban University of Technology | 2023 - Present (Final Year)</p>
+                    <p><strong>Relevant Coursework:</strong> Database Systems, Programming Fundamentals, Web Development, Systems Analysis, Data Structures, Statistical Analysis</p>
+                </div>
+
+                <div class="certification">
+                    <strong>🏅 SQL Honors Certificate</strong> - Coursera<br>
+                    <a href="https://coursera.org/share/E0CB510725B3B7CCECDA4FF72B42E618" class="link">View Credential</a>
+                </div>
+
+                <div class="certification">
+                    <strong>🏅 Machine Learning with Python</strong> - Coursera<br>
+                    <a href="https://coursera.org/share/E16955FB586E6A21E02DADE9A192CC99" class="link">View Credential</a>
+                </div>
+
+                <div class="certification">
+                    <strong>🏅 Data Visualization with Python</strong> - Coursera<br>
+                    <a href="https://coursera.org/share/a052a11c75e3a3f300fbd105af08b370" class="link">View Credential</a>
+                </div>
+
+                <div class="certification">
+                    <strong>🏅 Data Analysis with Python</strong> - Coursera<br>
+                    <a href="https://coursera.org/share/0485d0df13af60e04d60416b0fb2589b" class="link">View Credential</a>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">🌟 CORE COMPETENCIES</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4>🎯 Technical Leadership</h4>
+                        <p>Built and maintained educational platform with growing community engagement and consistent value delivery</p>
+                    </div>
+
+                    <div class="skill-category">
+                        <h4>🧠 Problem-Solving</h4>
+                        <p>Applied analytical thinking to solve complex data challenges and troubleshoot technical issues in real-time</p>
+                    </div>
+
+                    <div class="skill-category">
+                        <h4>💬 Communication Excellence</h4>
+                        <p>Transformed complex technical concepts into accessible content for diverse audiences across multiple platforms</p>
+                    </div>
+
+                    <div class="skill-category">
+                        <h4>📚 Continuous Learning</h4>
+                        <p>Self-directed mastery of emerging technologies and industry best practices with rapid adaptation to feedback</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">🎯 CAREER OBJECTIVE</h2>
+                <div class="summary">
+                    Passionate about leveraging advanced analytics and machine learning to drive strategic insights and enhance organizational decision-making. Seeking to apply proven expertise in data pipeline development, statistical analysis, and technical communication to contribute meaningfully to data-driven initiatives while continuing to grow in a collaborative, innovation-focused environment.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="print-btn" onclick="window.print()">📄 Save/Print CV</button>
+</body>
+</html>
